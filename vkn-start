@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo -e "\033]6;1;bg;red;brightness;0\a"
+echo -e "\033]6;1;bg;green;brightness;105\a"
+echo -e "\033]6;1;bg;blue;brightness;205\a"
+
+. ~/.nvm/nvm.sh
+nvm use v0.10.40
+echo -ne "\033]0;[vknplayer]\007"
+sh -c '$HOME/projects/vknplayer/vknplayer.js'

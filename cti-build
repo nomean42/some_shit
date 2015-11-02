@@ -1,0 +1,28 @@
+#!/bin/bash
+cd /Users/nomean42/projects/tve-design-iptv
+git pull
+TAG=$(git tag | grep tve-4.4.1 | tail -n1 )
+BRANCH=$(git branch | grep '\*.*')
+read -p "Build current($BRANCH) branch (c) or last ($TAG) version (l)?" choice
+
+if [[ "$choice"  == "l" ]]; then
+	git checkout tags/$TAG;
+	echo -e "\033]6;1;bg;red;brightness;255\a";
+	echo -e "\033]6;1;bg;green;brightness;155\a";
+	echo -e "\033]6;1;bg;blue;brightness;0\a";
+	npm i;
+	sudo npm run prestart;
+	sudo npm run build;
+	sudo npm start & sleep 10 && echo -ne "\033]0;[CTI]\007";
+elif [[ "$choice"  == "c" ]]; then
+ 	echo -e "\033]6;1;bg;red;brightness;255\a";
+        echo -e "\033]6;1;bg;green;brightness;155\a";
+        echo -e "\033]6;1;bg;blue;brightness;0\a";
+        npm i;
+        sudo npm run prestart;
+        sudo npm run build;
+        sudo npm start & sleep 10 && echo -ne "\033]0;[CTI]\007";
+else
+	echo "Incorrect input!\'c\' or \'l\' (in lower case)!";
+	sleep 1 && cti-build;
+fi;

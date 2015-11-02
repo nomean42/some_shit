@@ -1,0 +1,121 @@
+#user nomean42;	
+# MANUAL ORIGINAL FOR TVE-STB
+worker_processes  1;
+
+
+error_log  /usr/local/var/log/nginx/error.log;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    server {
+        listen       80;
+        #expires off;
+
+        location /portal-facade-social {
+            proxy_pass http://250.tr1ge.ru/portal-facade-social;
+        }
+
+        location /tve-service-social {
+            proxy_pass http://250.tr1ge.ru/tve-service-social;
+        }
+
+	location /taxi {
+            proxy_pass http://250.tr1ge.ru/taxi;
+        }
+	
+	location /tve40 {
+            proxy_pass http://127.0.0.1:8080;
+        }
+	
+	location ~ /tve40(?<section>.*) {
+                proxy_pass http://127.0.0.1:8080/$section;
+                proxy_set_header Host $host;
+        }
+
+	location /tve-proxy {
+            proxy_pass http://250.tr1ge.ru/tve-proxy;
+            proxy_pass_header  Cookie;
+            proxy_pass_header  Set-Cookie;
+            proxy_pass_header  P3P;
+        }
+	
+	location /megacam {
+           proxy_pass   http://250.tr1ge.ru/megacam;
+        }
+
+	location /locales {
+           proxy_pass   http://127.0.0.1:8080/locales;
+        }
+
+	location /images {
+           alias  /Users/nomean42/projects/tve-design-iptv/resources/images;
+        }
+
+	location /fonts {
+           alias  /Users/nomean42/projects/tve-design-iptv/resources/fonts;
+        }
+	
+	location /portal-facade-ng {
+            proxy_pass http://250.tr1ge.ru/portal-facade-ng;
+        }
+
+	location /sagem {
+            proxy_pass   http://250.tr1ge.ru/sagem;
+        }
+
+        location /Widget {
+            proxy_pass   http://250.tr1ge.ru/Widget;
+        }
+
+	location /tve-service-weather{
+            proxy_pass http://250.tr1ge.ru/tve-service-weather;
+        }
+
+        location /tve-service-news {
+            proxy_pass http://250.tr1ge.ru/tve-service-news;
+        }
+
+        location /tve-service-chat {
+            proxy_pass http://250.tr1ge.ru/tve-service-chat;
+        }
+
+        location /tve-mtsjsonpp {
+            proxy_pass http://250.tr1ge.ru/tve-mtsjsonpp;
+        }
+
+	location /tve-jsonpp {
+            proxy_pass http://250.tr1ge.ru/tve-jsonpp;
+        }
+
+	location /tve-images {
+            proxy_pass http://250.tr1ge.ru/tve-images;
+        }
+
+	location /test {
+            proxy_pass http://250.tr1ge.ru/test;
+        }
+
+	location /cdxhr-cookie {
+            proxy_pass http://250.tr1ge.ru/cdxhr-cookie;
+        }
+
+        location /telephony {
+            proxy_pass http://250.tr1ge.ru/telephony;
+        }
+
+        location /frameworks {
+            proxy_pass http://250.tr1ge.ru/frameworks;
+        }
+
+	location / {
+     	   proxy_pass http://127.0.0.1:8080;
+	}
+	
+	location /bundles/2day/dune/index.html {
+     	   alias /Users/nomean42/projects/tve-design-iptv/bundles/2day/dune/index.html;
+	}
+    }
+}
