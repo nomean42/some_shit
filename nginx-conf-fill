@@ -1,0 +1,5 @@
+NGINGSCONF='/etc/nginx/nginx.conf'
+JOB_URL=
+# tmp sudo sed -i '$ a \\nlocation / {' $NGINGSCONF
+#     sudo sed -i '$ a \     alias  /Users/nomean42/projects/tve-design-iptv/resources/images;' $NGINGSCONF
+#     sudo sed -i '$ a \  }' $NGINGSCONF

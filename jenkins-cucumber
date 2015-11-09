@@ -1,0 +1,55 @@
+TAG=$(hg tags | grep -m1 -e 'v[[:digit:]].[[:digit:]].[[:digit:]]*' | sudo sed 's/[[:digit:]][[:digit:]][[:digit:]][[:digit:]].............//')
+hg checkout $TAG
+
+cd app
+npm i
+cp app/persik/config/local-config.js.sample app/persik/config/local-config.js
+zb build pc
+zb build samsung
+zb build mag250
+zb build dune
+zb build lg
+zb build webos
+
+
+#находит последний тег и отрезаетненужный конец
+hg tags | grep -m1 -e 'v[[:digit:]].[[:digit:]].[[:digit:]]*' | sudo sed 's/[[:digit:]][[:digit:]][[:digit:]][[:digit:]].............//'
+
+#nginx-conf-init
+NGINGSCONF='/etc/nginx/nginx.conf'
+sudo rm $NGINGSCONF
+sudo touch $NGINGSCONF
+sudo chmod -R 777 $NGINGSCONF
+echo '#user' > $NGINGSCONF
+
+
+
+#parse last tag without chngeset, without 'v'
+TAG=$(hg tags | grep -m1 -e 'v[[:digit:]].[[:digit:]].[[:digit:]]*' | sudo sed 's/[[:digit:]][[:digit:]][[:digit:]][[:digit:]].............//' | sudo sed 's/v//')
+echo $TAG > $NGINGSCONF
+
+sudo sed -i '$ a \\nworker_processes 1;' $NGINGSCONF
+sudo sed -i '$ a \\nevents {' $NGINGSCONF
+sudo sed -i '$ a \    worker_connections  1024;' $NGINGSCONF
+sudo sed -i '$ a \}' $NGINGSCONF
+
+sudo sed -i '$ a \\nhttp {' $NGINGSCONF
+sudo sed -i '$ a \    server {' $NGINGSCONF
+sudo sed -i '$ a \        listen       80;' $NGINGSCONF
+
+
+#nginx-conf-fill
+sudo sed -i '$ a \\nlocation /${TAG}/pc {' $NGINGSCONF
+sudo sed -i '$ a \     alias  /home/ubuntu/projects/cucumber/app/dist/${TAG}/pc;' $NGINGSCONF
+sudo sed -i '$ a \  }' $NGINGSCONF
+
+#nginx-conf-close
+sudo sed -i '$ a \      }' $NGINGSCONF
+sudo sed -i '$ a \  }' $NGINGSCONF
+
+#build-script
+sudo nginx -s reload
+cd app
+npm i
+cp app/persik/config/local-config.js.sample app/persik/config/local-config.js
+zb build pc
