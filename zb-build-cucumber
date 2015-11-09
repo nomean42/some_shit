@@ -1,0 +1,18 @@
+find -maxdepth 1 -type d | grep '[[:digit:]].[[:digit:]].[[:digit:]] | sudo sed 's/.///''
+
+#build-script
+cd app
+npm i
+cp app/persik/config/local-config.js.sample app/persik/config/local-config.js
+zb build pc
+zb build mag250
+zb build samsung
+zb build lg
+zb build webos
+zb build dune
+
+#find directories in dist
+find -maxdepth 1 -type d | grep '[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]\?' | sudo sed 's/\.\///' | while read line
+do
+cp -r $line /home/ubuntu/builds/$line
+done

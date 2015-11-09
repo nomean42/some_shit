@@ -6,13 +6,10 @@ NGINGSCONF='/etc/nginx/nginx.conf'
 sudo rm $NGINGSCONF
 sudo touch $NGINGSCONF
 sudo chmod -R 777 $NGINGSCONF
-echo '#user' > $NGINGSCONF
-sudo sed -i '$ a \\nworker_processes 1;' $NGINGSCONF
-
-sudo sed -i '$ a \\nevents {' $NGINGSCONF
-sudo sed -i '$ a \    worker_connections  1024;' $NGINGSCONF
-sudo sed -i '$ a \}' $NGINGSCONF
-
-sudo sed -i '$ a \\nhttp {' $NGINGSCONF
-sudo sed -i '$ a \    server {' $NGINGSCONF
-sudo sed -i '$ a \        listen       80;' $NGINGSCONF
+echo '\nworker_processes 1;' >> $NGINGSCONF
+echo '\nevents {' >> $NGINGSCONF
+echo '\tworker_connections  1024;' >> $NGINGSCONF
+echo '}' >> $NGINGSCONF
+echo '\nhttp {' >> $NGINGSCONF
+echo '\tserver {' >> $NGINGSCONF
+echo '\t\tlisten 80;' >> $NGINGSCONF
