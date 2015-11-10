@@ -1,29 +1,14 @@
-BUILDPATH='/home/ubuntu/builds'
-NGINGSCONF='/etc/nginx/nginx.conf'
-#nginx-config-init
-sudo rm $NGINGSCONF
-sudo touch $NGINGSCONF
-sudo chmod -R 777 $NGINGSCONF
-echo '\nworker_processes 1;' >> $NGINGSCONF
-echo '\nevents {' >> $NGINGSCONF
-echo '\tworker_connections  1024;' >> $NGINGSCONF
-echo '}' >> $NGINGSCONF
-echo '\nhttp {' >> $NGINGSCONF
-echo '\tserver {' >> $NGINGSCONF
-echo '\t\tlisten 80;' >> $NGINGSCONF
-
 #build-script
-BUILDPATH='/home/ubuntu/builds'
+BUILDPATH='/home/ifaced/builds'
 NGINGSCONF='/etc/nginx/nginx.conf'
-cd $WORKSPACE/app
-npm i
-cp app/persik/config/local-config.js.sample app/persik/config/local-config.js
-zb build pc
-zb build samsung
-zb build mag250
-zb build dune
-zb build lg
-zb build webos
+cp $WORKSPACE/app/app/persik/config/local-config.js.sample $WORKSPACE/app/app/persik/config/local-config.js
+#zb build pc
+#zb build samsung
+#zb build mag250
+#zb build dune
+#zb build lg
+#zb build webos
+#
 cd $WORKSPACE/app/dist/
 find -maxdepth 1 -type d | grep '[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]\?' | sudo sed 's/\.\///' | while read line
 do

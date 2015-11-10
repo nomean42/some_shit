@@ -1,0 +1,17 @@
+feature/jenkins-test-branch 3688:5e71ee581916
+feature/3195-update-samsung-docs 3666:ae3b390284f6
+release/v3.1.1              3665:bcf03daadb73
+feature/3156-add-absent-text 3657:d545c733e89b
+feature/3110-do-not-hide-parent-popup 3642:fb39b269cbd7
+feature/3173-wrong-popup-on-start-scene 3619:81b216176495
+feature/3198-fix-promise-chain 3422:16f445d9393a
+default                     3239:aa719fea3a0d
+feature/3110-incorrect-popup-opening-logic 3148:b557e6d4e079
+feature/3022-two-popups-are-showed 3138:576663f296d2
+develop-v2                  3131:c136c28de869
+feature/2881-fix-midnight-epg-programs 2816:c2bc5aa1f84d
+feature/2594-load-epg-optimization 2337:5c695b25e275
+hotfix/2559-tmp-branch-hardcode-remote-log-server 2240:38ab48768975
+develop                     3554:73aa2bb6b41e (неактивна)
+default-v2                  3130:4ce64f549da0 (неактивна)
+feature/3006-combine-channel-list-and-channels-list-layout 2971:c3a6a5315296 (неактивна)
