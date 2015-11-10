@@ -13,6 +13,8 @@ echo '\tserver {' >> $NGINGSCONF
 echo '\t\tlisten 80;' >> $NGINGSCONF
 
 #build-script
+BUILDPATH='/home/ubuntu/builds'
+NGINGSCONF='/etc/nginx/nginx.conf'
 cd $WORKSPACE/app
 npm i
 cp app/persik/config/local-config.js.sample app/persik/config/local-config.js
