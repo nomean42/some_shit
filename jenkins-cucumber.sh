@@ -1,4 +1,28 @@
+#!/usr/bin/env bash
+#build-script
+BUILDPATH='/home/ifaced/builds'
 NGINGSCONF='/etc/nginx/nginx.conf'
+cp $WORKSPACE/app/app/persik/config/local-config.js.sample $WORKSPACE/app/app/persik/config/local-config.js
+#zb build pc
+#zb build samsung
+#zb build mag250
+#zb build dune
+#zb build lg
+#zb build webos
+#
+cd $WORKSPACE/app/dist/
+find -maxdepth 1 -type d | grep '[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]\?' | sudo sed 's/\.\///' | while read line
+do
+	#rm old versions
+    rm -rf $BUILDPATH/$line
+
+    #copy new versions
+    cp -r $line $BUILDPATH/$line
+
+	#rename *.html for mag
+    if [ -d "$WORKSPACE/app/dist/$line/mag250" ]; then
+		mv $BUILDPATH/$line/mag250/*.html $BUILDPATH/$line/mag250/index.html
+	fi
 #nginx-config-fill
 	#lg
     echo '\n\t\tlocation '/$line'/lg {' >> $NGINGSCONF
@@ -23,4 +47,16 @@ NGINGSCONF='/etc/nginx/nginx.conf'
     #mag250
 	echo '\n\t\tlocation '/$line'/mag250 {' >> $NGINGSCONF
 	echo '\t\t\talias '$BUILDPATH'/'$line'/mag250;' >> $NGINGSCONF
-	echo '\t\t}' >> $NGINGSCONFNF
+	echo '\t\t}' >> $NGINGSCONF
+done
+
+#nginx-conf-close
+echo '\t}' >> $NGINGSCONF
+echo '}' >> $NGINGSCONF
+
+#nginx-start
+if pgrep "nginx"> /dev/null ; then
+	sudo nginx -s reload
+else
+	sudo nginx
+fi

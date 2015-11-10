@@ -1,4 +1,4 @@
-!#/bin/sh
+#!/usr/bin/env bash
 #/etc/nginx/nginx.conf
 #echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 #sudo sed -i '$ a \\n1' /etc/nginx/nginx.conf
