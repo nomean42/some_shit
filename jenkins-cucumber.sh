@@ -11,7 +11,7 @@ cp $PWD/app/app/persik/config/local-config.js.sample $PWD/app/app/persik/config/
 #zb build webos
 #
 cd $PWD/app/dist/
-find -maxdepth 1 -type d | grep '[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]\?' | sudo sed 's/\.\///' | while read line
+find -maxdepth 1 -type d|grep -m 1 '[0-9]\+.[0-9]\+.[0-9]\+'|sudo sed 's/\.\///'|while read line
 do
 	#rm old versions
     rm -rf $BUILDPATH/$line
