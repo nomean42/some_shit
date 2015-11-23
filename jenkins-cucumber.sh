@@ -2,7 +2,7 @@
 #build-script
 BUILDPATH='/home/ifaced/builds'
 NGINGSCONF='/etc/nginx/nginx.conf'
-cp $WORKSPACE/app/app/persik/config/local-config.js.sample $WORKSPACE/app/app/persik/config/local-config.js
+cp $PWD/app/app/persik/config/local-config.js.sample $PWD/app/app/persik/config/local-config.js
 #zb build pc
 #zb build samsung
 #zb build mag250
@@ -10,7 +10,7 @@ cp $WORKSPACE/app/app/persik/config/local-config.js.sample $WORKSPACE/app/app/pe
 #zb build lg
 #zb build webos
 #
-cd $WORKSPACE/app/dist/
+cd $PWD/app/dist/
 find -maxdepth 1 -type d | grep '[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]\?' | sudo sed 's/\.\///' | while read line
 do
 	#rm old versions
@@ -20,7 +20,7 @@ do
     cp -r $line $BUILDPATH/$line
 
 	#rename *.html for mag
-    if [ -d "$WORKSPACE/app/dist/$line/mag250" ]; then
+    if [ -d "$PWD/app/dist/$line/mag250" ]; then
 		mv $BUILDPATH/$line/mag250/*.html $BUILDPATH/$line/mag250/index.html
 	fi
 #nginx-config-fill
