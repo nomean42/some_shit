@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<theme><layouts>
+
+    <!-- MAIN MENU -->
+
+    <!-- Window layout -->
+    <view id="main_menu" style="base_fullscreen_content">
+        <digitalclock style=".digitalclock" />
+        <date style=".date" />
+        <view id="cursor" style=".cursor" visible="false" />
+        <view id="buttons" style=".buttons_block" />
+        <imageview id="tvip_logo" style=".tvip_logo" />
+        <imageview id="operator_logo" style=".operator_logo" />
+    </view>
+
+    <!-- One menu item layout -->
+    <view id="mainmenu_item" style=".item">
+        <imageview focusable="true" style=".item" />
+        <label style=".item" />
+    </view>
+
+    <!-- END MAIN MENU -->
+
+    <!-- Standby -->
+    <view id="standby">
+        <label text="Going to standby..." />
+    </view>
+    <!-- END Standby -->
+
+    <!-- Browser -->
+    <view id="browser">
+        <view id="waiting_animation">
+            <imageview style=".waiting_animation" />
+        </view>
+    </view>
+    <!-- END Browser -->
+
+    <!-- BASIC FULLSCREEN CONTENT STRUCTURE -->
+    <view id="base_fullscreen_content" style="base_fullscreen_content">
+        <digitalclock style="base_fullscreen_digitalclock" />
+        <date style="base_fullscreen_date" />
+        <view style=".container" id="container" />
+        <buttonhelper style="base_buttonhelper" />
+    </view>
+
+    <view id="button_helper">
+        <view style="button_helper_root">
+            <view id="red_helper" style="button_helper_item">
+                <view style="button_helper_icon_red" />
+                <label style="button_helper_label" />
+            </view>
+            <view id="green_helper" style="button_helper_item">
+                <view  style="button_helper_icon_green" />
+                <label style="button_helper_label" />
+            </view>
+            <view id="yellow_helper" style="button_helper_item">
+                <view  style="button_helper_icon_yellow" />
+                <label style="button_helper_label" />
+            </view>
+            <view id="blue_helper" style="button_helper_item">
+                <view  style="button_helper_icon_blue" />
+                <label style="button_helper_label" />
+            </view>
+        </view>
+    </view>
+
+
+
+    <!-- TV PLAYER -->
+
+    <view id="tvplayer">
+
+        <!-- Timeshift mark -->
+        <view id="timeshift_mark" visible="false" style=".timeshift_mark"></view>
+
+        <!-- Play/pause marks -->
+        <view id="player_status_mark_play" visible="false" style=".play_mark" />
+        <view id="player_status_mark_pause" visible="false" style=".pause_mark"/>
+    </view>
+
+    <!-- Channels list -->
+    <view id="iptv_channels"  base="base_fullscreen_content" base_id="container" style =".iptv_channels">
+        <view style=".iptv_channels.favorite">
+            <tabselect id="label_favorite_filter" style=".iptv_channels.favorite" />
+        </view>
+        <listview id="iptv_channellist" style=".iptv_channels.listview" focusable="true" precache_rows="8">
+            <columns style=".iptv_channels.listview.columns">
+                <label id="channel_number" style=".iptv_channels.listview.channel_number" />
+                <!--<view style=".iptv_channels.listview.logo">
+                  <imageview id="logo"  style=".iptv_channels.listview.logo.icon" />
+                </view>-->
+                <label id="channel_name"  style=".iptv_channels.listview.channel_name" />
+                <label id="current_event"  style=".iptv_channels.listview.current_event" />
+                <view style=".iptv_channels.listview.favorite">
+                    <imageview id="favorite"  style=".iptv_channels.listview.favorite.icon" />
+                </view>
+                <view style=".iptv_channels.listview.sec_lock">
+                    <imageview id="sec_lock"  style=".iptv_channels.listview.sec_lock.icon" />
+                </view>
+                <view style=".iptv_channels.listview.progress">
+                    <progressbar id="current_event_progress" style=".iptv_channels.listview.event_progress" no_ui_blocks="true" />
+                </view>
+            </columns>
+            <progressbar style=".iptv_channels.listview.scroller">
+                <slider style=".iptv_channels.listview.slider" />
+            </progressbar>
+        </listview>
+        <view style=".iptv_channels.infobar" id="channel_infobar">
+            <view  style=".iptv_channels.infobar.logo">
+                <imageview id="image_logo" style=".iptv_channels.infobar.logo.img" />
+            </view>
+            <view style=".iptv_channels.infobar.text">
+                <view style=".iptv_channels.infobar.current_event">
+                    <label id="label_current_program_time" style=".iptv_channels.infobar.time"/>
+                    <label id="label_current_program_title"  style=".iptv_channels.infobar.title"/>
+                </view>
+                <label id="label_current_program_title_description" style=".iptv_channels.infobar.desc" />
+                <view style=".iptv_channels.infobar.next_event">
+                    <label id="label_next_program_time" style=".iptv_channels.infobar.time"/>
+                    <label id="label_next_program_title" style=".iptv_channels.infobar.title"/>
+                </view>
+                <label id="label_next_program_description"   style=".iptv_channels.infobar.desc"/>
+            </view>
+        </view>
+    </view>
+
+    <view id="iptv_channels_preview"  base="base_fullscreen_content" base_id="container" style =".iptv_channels">
+        <view style=".iptv_channels.favorite">
+            <tabselect id="label_favorite_filter" style=".iptv_channels.favorite" />
+        </view>
+        <view style=".iptv_channels.preview_layout">
+            <listview id="iptv_channellist" style=".iptv_channels.listview_preview" focusable="true" precache_rows="8">
+                <columns style=".iptv_channels.listview.columns">
+                    <label id="channel_number" style=".iptv_channels.listview.channel_number_preview" />
+                    <!--<view style=".iptv_channels.listview.logo">
+                      <imageview id="logo"  style=".iptv_channels.listview.logo.icon" />
+                    </view>-->
+                    <label id="channel_name"  style=".iptv_channels.listview.channel_name_preview" />
+                    <view style=".iptv_channels.listview.favorite_preview">
+                        <imageview id="favorite"  style=".iptv_channels.listview.favorite.icon" />
+                    </view>
+                    <view style=".iptv_channels.listview.sec_lock_preview">
+                        <imageview id="sec_lock"  style=".iptv_channels.listview.sec_lock.icon" />
+                    </view>
+                </columns>
+                <progressbar style=".iptv_channels.listview.scroller">
+                    <slider style=".iptv_channels.listview.slider" />
+                </progressbar>
+            </listview>
+            <view  style=".iptv_channels.preview_layout2">
+                <view id="video_hole" style=".iptv_channels.video_window" >
+                </view>
+                <view style=".iptv_channels.infobar_preview" id="channel_infobar">
+                    <view  style=".iptv_channels.infobar.logo">
+                        <imageview id="image_logo" style=".iptv_channels.infobar.logo.img" />
+                    </view>
+                    <view style=".iptv_channels.infobar.text">
+                        <view style=".iptv_channels.infobar.current_event">
+                            <label id="label_current_program_time" style=".iptv_channels.infobar.time"/>
+                            <label id="label_current_program_title"  style=".iptv_channels.infobar.title"/>
+                        </view>
+                        <label id="label_current_program_title_description" style=".iptv_channels.infobar.desc" />
+                        <view style=".iptv_channels.infobar.next_event">
+                            <label id="label_next_program_time" style=".iptv_channels.infobar.time"/>
+                            <label id="label_next_program_title" style=".iptv_channels.infobar.title"/>
+                        </view>
+                        <label id="label_next_program_description"   style=".iptv_channels.infobar.desc"/>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+    </view>
+
+
+    <!-- Channel epg -->
+    <view id="iptv_channel_epg"  base="base_fullscreen_content" base_id="container"  style =".iptv_channel_epg">
+        <view style=".iptv_channel_epg.header">
+            <label id="label_channel_number"  style=".iptv_channel_epg.header.number"/>
+            <label id="label_channel_title"   style=".iptv_channel_epg.header.title" />
+        </view>
+        <listview id="iptv_epglist" style=".iptv_channel_epg.listview"  focusable="true">
+            <columns style=".iptv_channel_epg.listview.columns">
+                <label id="weekday" style=".iptv_channel_epg.listview.weekday" />
+                <label id="monthday" style=".iptv_channel_epg.listview.monthday" />
+                <label id="daytime" style=".iptv_channel_epg.listview.daytime" />
+                <label id="event_name" style=".iptv_channel_epg.listview.event_name" />
+                <view style=".iptv_channel_epg.listview.record_mark">
+                    <imageview style=".iptv_channel_epg.listview.record_mark.img" id="record_mark"/>
+                </view>
+            </columns>
+            <progressbar style=".iptv_channel_epg.listview.scroller">
+                <slider style=".iptv_channel_epg.listview.slider" />
+            </progressbar>
+        </listview>
+    </view>
+
+    <!-- One current epg event info -->
+    <view id="iptv_epg_detailed"  base="base_fullscreen_content" base_id="container" style =".iptv_epg_detailed">
+        <view style=".iptv_epg_detailed.header">
+            <label id="label_channel_number" style=".iptv_epg_detailed.header.number" />
+            <label id="label_channel_title" style=".iptv_epg_detailed.header.title"  />
+        </view>
+        <view style=".iptv_epg_detailed.event_times.view">
+            <tabselect id="label_event_times" style=".iptv_epg_detailed.event_times" />
+        </view>
+        <view style=".iptv_epg_detailed.event_title.view">
+            <label id="label_event_title"  style=".iptv_epg_detailed.event_title"/>
+        </view>
+        <view  style=".iptv_epg_detailed.event_length.view">
+            <label id="label_event_length_name" style=".iptv_epg_detailed.event_length_name" text="Duration:" />
+            <label id="label_event_length"  style=".iptv_epg_detailed.event_length" />
+            <imageview id="record_mark" />
+        </view>
+        <view style=".iptv_epg_detailed.event_desc.view">
+            <labelmultiline id="label_event_description" style=".iptv_epg_detailed.event_desc"/>
+            <progressbar id="scrollbar_event_description" style=".iptv_epg_detailed.event_desc.progress" >
+                <slider background="listview_scrollbar_scroller" style=".iptv_epg_detailed.event_desc.progress" />
+            </progressbar>
+        </view>
+    </view>
+
+    <!-- Channel switch info -->
+    <view id="iptv_channel_info" visible="false"  style =".iptv_channel_info">
+        <digitalclock style=".iptv_channel_info.digitalclock" />
+        <date style=".iptv_channel_info.date" />
+        <view style =".iptv_channel_info.content">
+            <view style=".iptv_channel_info.header">
+                <label id="label_channel_number" style=".iptv_channel_info.header.number" />
+                <label id="label_channel_name" style=".iptv_channel_info.header.title" />
+            </view>
+            <view style=".iptv_channel_info.now">
+                <label text="Now" style=".iptv_channel_info.now.name"/>
+                <label id="label_current_program_title" style=".iptv_channel_info.now.title"/>
+                <progressbar id="progressbar_current_program" style=".iptv_channel_info.now.time" />
+                <label id="label_current_program_percent" style=".iptv_channel_info.now.percent"/>
+                <label id="label_current_program_lang" style=".iptv_channel_info.now.lang"/>
+            </view>
+            <view  style=".iptv_channel_info.following">
+                <label text="Following" style=".iptv_channel_info.following.name"/>
+                <label id="label_next_program_title" style=".iptv_channel_info.following.title" />
+                <label id="label_next_program_time" style=".iptv_channel_info.following.time" />
+            </view>
+            <view id="timeshift_progress" hidden="true" visible="false" style=".iptv_channel_info.timeshift_progress">
+                <label id="timeshift_progress_label_min" style=".iptv_channel_info.timeshift_progress.min"/>
+                <progressfield id="timeshift_progress_field"  focusable="true" style=".iptv_channel_info.timeshift_progress.progress">
+                    <slider style=".iptv_channel_info.timeshift_progress.slider" />
+                </progressfield>
+                <label id="timeshift_progress_label_max" style=".iptv_channel_info.timeshift_progress.max" />
+            </view>
+        </view>
+        <buttonhelper  style="base_buttonhelper" />
+    </view>
+
+    <view id="iptv_channel_numfield_window" visible="false" style=".channel_number">
+        <textfield mode="number" max_chars="3" id="iptv_channel_numfield"  style=".channel_number.field" />
+    </view>
+
+    <view id="iptv_no_channels" visible="false" style=".status">
+        <labelmultiline text="Waiting for a channel list." style=".status.label" />
+    </view>
+
+    <!-- END TV PLAYER -->
+
+    <!-- PREFERENCES -->
+    <view id="preferences" base="base_fullscreen_content" base_id="container">
+        <view id="preferences_main" style=".main">
+            <label text="Settings" style=".title" />
+            <view style=".pref_container">
+                <view navigation_table_looped="1" id="level_1" style=".level1">
+                    <label style=".level1.item.system,preferences.l1_item" text="System" id="pref_system" params="prefid=pref_system_ helpid=pref_system_root"/>
+                    <label style=".level1.item.appearance,preferences.l1_item"  text="Appearance" id="pref_appearance" params="prefid=pref_appearance_ helpid=pref_appearance_root"/>
+                    <label style=".level1.item.network,preferences.l1_item" text="Network" id="pref_network" params="prefid=pref_network_ helpid=pref_network_root"/>
+                    <label style=".level1.item.display,preferences.l1_item" text="Display" id="pref_display" params="prefid=pref_display_ helpid=pref_display_root"/>
+                    <label style=".level1.item.tv,preferences.l1_item" text="TV" id="pref_tv" params="prefid=pref_tv_ helpid=pref_tv_root"/>
+                    <label style=".level1.item.security,preferences.l1_item" text="Security" id="pref_security" params="prefid=pref_security_ helpid=pref_security_root"/>
+                </view>
+                <view id="level_2" style=".level2">
+
+                    <view style=".level2.container">
+                        <view> <!--BEGIN pref content-->
+                            <view style=".level2.block" id="pref_system_" navigation_table_looped="true" visible="false">
+                                <view style=".level2.item,preferences.l2_item" params="helpid=pref_system_language">
+                                    <label style=".level2.item.label" text="System language:"/>
+                                    <tabselect style=".level2.item.field" id="pref_system_language" focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" params="helpid=pref_system_updatetype">
+                                    <label  style=".level2.item.label" text="Update type:"/>
+                                    <tabselect style=".level2.item.field" id="pref_system_updatetype" focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" params="helpid=pref_system_updateperiod">
+                                    <label  style=".level2.item.label" text="Check updates:"/>
+                                    <tabselect style=".level2.item.field" id="pref_system_updateperiod" focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" params="helpid=pref_system_updatebackground">
+                                    <label  style=".level2.item.label" text="Install background updates:"/>
+                                    <tabselect style=".level2.item.field" id="pref_system_updatebackground" focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item" params="helpid=pref_system_timezone">
+                                    <label  style=".level2.item.label" text="Timezone:"/>
+                                    <tabselect style=".level2.item.field" id="pref_system_timezone" focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item"  params="helpid=pref_system_timeserver">
+                                    <label  style=".level2.item.label" text="NTP server address:"/>
+                                    <textfield style=".level2.item.field" ext_keyboard="true"  id="pref_system_timeserver" focusable="true" text_halign="left" regexp="^((((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))$|^(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}))+$|^$"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item" params="helpid=pref_system_audiolanguage">
+                                    <label  style=".level2.item.label" text="Default audio language:"/>
+                                    <tabselect style=".level2.item.field" id="pref_system_audiolanguage" focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item" params="helpid=pref_system_digitalsoundmode">
+                                    <label  style=".level2.item.label" text="Digital sound output:"/>
+                                    <tabselect style=".level2.item.field" id="pref_system_digitalsoundmode" focusable="true"/>
+                                </view>
+                                <view style=".level2.button_block">
+                                    <keybutton  id="pref_system_button_info" text="Info" />
+                                    <keybutton  id="pref_system_button_ossetup" text="OS Settings" />
+                                    <keybutton id="pref_system_button_checkupdates" text="Check updates now"/>
+                                    <keybutton id="pref_system_button_cancel" text="Cancel"/>
+                                </view>
+                            </view>
+
+                            <view style=".level2.block" id="pref_appearance_" navigation_table_looped="true" visible="false">
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_appearance_alpha">
+                                    <label style=".level2.item.label" text="UI transparency:"/>
+                                    <progressfield id="pref_appearance_alpha"  style=".level2.item.field"  focusable="true">
+                                        <slider style=".level2.item.field.slider" />
+                                    </progressfield>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_appearance_anim">
+                                    <label style=".level2.item.label" text="UI animations:"/>
+                                    <tabselect style=".level2.item.field" id="pref_appearance_anim"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_appearance_listlooped">
+                                    <label style=".level2.item.label" text="Looped list scrolling:"/>
+                                    <tabselect style=".level2.item.field" id="pref_appearance_listlooped"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_appearance_padding">
+                                    <label style=".level2.item.label" text="TV overscan:"/>
+                                    <tabselect style=".level2.item.field" id="pref_appearance_padding"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_appearance_tv_preview_mode">
+                                    <label style=".level2.item.label" text="TV channel list with preview:"/>
+                                    <tabselect style=".level2.item.field" id="pref_appearance_tv_preview_mode"  focusable="true"/>
+                                </view>
+                                <view style=".level2.button_block">
+                                    <keybutton id="pref_appearance_button_cancel" text="Cancel" />
+                                </view>
+
+                            </view>
+
+                            <view style=".level2.block" id="pref_tv_" visible="false" navigation_table_looped="true">
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_tv_streamtype">
+                                    <label style=".level2.item.label" text="Stream source:"/>
+                                    <tabselect style=".level2.item.field" id="pref_tv_streamtype"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" params="helpid=pref_tv_udpxyaddress">
+                                    <label style=".level2.item.label" text="UDPXY server:"/>
+                                    <textfield style=".level2.item.field" ext_keyboard="true" id="pref_tv_udpxyaddress"  focusable="true" regexp="^(http://)?(([A-Za-z0-9_]+):(.+)@)?((((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))|(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}))+(:(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{0,3}))$" />
+                                </view>
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_tv_mpegts_buffer">
+                                    <label style=".level2.item.label" text="MPEG-TS buffering, msec:"/>
+                                    <tabselect style=".level2.item.field" id="pref_tv_mpegts_buffer"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" params="helpid=pref_tv_dvr_deviceid">
+                                    <label style=".level2.item.label" text="DVR storage:"/>
+                                    <textfield style=".level2.item.field" id="pref_tv_dvr_deviceid"  focusable="true" />
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" params="helpid=pref_tv_timeshift_deviceid">
+                                    <label  style=".level2.item.label" text="Timeshift storage:"/>
+                                    <textfield style=".level2.item.field" id="pref_tv_timeshift_deviceid"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" params="helpid=pref_tv_autotimeshift">
+                                    <label  style=".level2.item.label" text="Auto-timeshifting:"/>
+                                    <tabselect style=".level2.item.field" id="pref_tv_autotimeshift"  focusable="true" />
+                                </view>
+                                <view style=".level2.item,preferences.l2_item">
+                                    <label  style=".level2.item.label" text="Content source:"/>
+                                    <tabselect style=".level2.item.field" id="pref_tv_middleware" text="TVIP Middleware"   focusable="true"/>
+                                </view>
+                                <view style=".level2.button_block">
+                                    <keybutton id="pref_tv_button_midd_setup" text="" />
+                                    <keybutton id="pref_tv_button_cancel" text="Cancel"/>
+                                </view>
+                            </view>
+
+                            <view style=".level2.block" id="pref_network_" visible="false" navigation_table_looped="true">
+                                <view style=".level2.item,preferences.l2_item" params="helpid=pref_network_iface">
+                                    <label  style=".level2.item.label" text="Network interface:"/>
+                                    <tabselect style=".level2.item.field" id="pref_network_iface"  focusable="true"/>
+                                </view>
+                                <view layout="vertical" id="iface_config">
+                                    <view style=".level2.item,preferences.l2_item">
+                                        <label  style=".level2.item.label" text="MAC address:"/>
+                                        <label style=".level2.item.field" id="pref_network_mac_show"  focusable="true"/>
+                                    </view>
+                                    <view style=".level2.item,preferences.l2_item"  params="helpid=pref_network_wlan_ssid" hidden="true">
+                                        <label  style=".level2.item.label" text="WiFi network:"/>
+                                        <label  style=".level2.item.field" id="pref_network_wlan_ssid" text="Not selected"  focusable="true"/>
+                                    </view>
+                                    <view style=".level2.item,preferences.l2_item"   params="helpid=pref_network_config">
+                                        <label  style=".level2.item.label" text="IP setup:"/>
+                                        <tabselect style=".level2.item.field" id="pref_network_config"  focusable="true"/>
+                                    </view>
+                                    <view>
+                                        <view id="static_ip_config" layout="vertical">
+                                            <view style=".level2.item,preferences.l2_item">
+                                                <label  style=".level2.item.label" text="IP address:"/>
+                                                <ipaddressinputfield style=".level2.item.field" id="pref_network_ip"  focusable="true"/>
+                                            </view>
+                                            <view style=".level2.item,preferences.l2_item">
+                                                <label  style=".level2.item.label" text="Netmask:"/>
+                                                <ipaddressinputfield style=".level2.item.field" id="pref_network_mask"  focusable="true" />
+                                            </view>
+                                            <view style=".level2.item,preferences.l2_item">
+                                                <label  style=".level2.item.label" text="Gateway:"/>
+                                                <ipaddressinputfield style=".level2.item.field" id="pref_network_gateway"  focusable="true"/>
+                                            </view>
+                                            <view style=".level2.item,preferences.l2_item">
+                                                <label  style=".level2.item.label" text="DNS 1:"/>
+                                                <ipaddressinputfield style=".level2.item.field" id="pref_network_dns1"  focusable="true"/>
+                                            </view>
+                                            <view style=".level2.item,preferences.l2_item">
+                                                <label  style=".level2.item.label" text="DNS 2:"/>
+                                                <ipaddressinputfield style=".level2.item.field" id="pref_network_dns2"  focusable="true"/>
+                                            </view>
+                                        </view>
+                                        <view id="dynamic_ip_show" layout="vertical">
+                                            <view style=".level2.item,preferences.l2_item" focusable="false">
+                                                <label style=".level2.item.label" text="IP address:"/>
+                                                <label style=".level2.item.field" id="pref_network_ip_show"/>
+                                            </view>
+                                            <view style=".level2.item,preferences.l2_item" focusable="false">
+                                                <label style=".level2.item.label" text="Netmask:"/>
+                                                <label style=".level2.item.field" id="pref_network_mask_show"/>
+                                            </view>
+                                            <view style=".level2.item,preferences.l2_item" focusable="false">
+                                                <label style=".level2.item.label" text="Gateway:"/>
+                                                <label style=".level2.item.field" id="pref_network_gateway_show" />
+                                            </view>
+                                            <view style=".level2.item,preferences.l2_item" focusable="false">
+                                                <label style=".level2.item.label" text="DNS 1:"/>
+                                                <label style=".level2.item.field" id="pref_network_dns1_show" />
+                                            </view>
+                                            <view style=".level2.item,preferences.l2_item" focusable="false">
+                                                <label style=".level2.item.label" text="DNS 2:"/>
+                                                <label style=".level2.item.field" id="pref_network_dns2_show" />
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view style=".level2.button_block">
+                                    <keybutton id="pref_network_button_ok" text="Apply"/>
+                                    <keybutton id="pref_network_button_cancel" text="Cancel"/>
+                                </view>
+                            </view>
+
+                            <view style=".level2.block"  id="pref_display_" visible="false" navigation_table_looped="true">
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_display_hdformat">
+                                    <label style=".level2.item.label" text="HD format:"/>
+                                    <tabselect style=".level2.item.field" id="pref_display_hdformat" text="Enabled"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" >
+                                    <label style=".level2.item.label" text="HDMI output:"/>
+                                    <tabselect style=".level2.item.field" id="pref_display_hdhdmienable"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" >
+                                    <label style=".level2.item.label" text="Component output:"/>
+                                    <tabselect style=".level2.item.field" id="pref_display_hdcomponentenable"  focusable="true"/>
+                                </view>
+                                <view style=".level2.spacer" />
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_display_sdformat">
+                                    <label style=".level2.item.label" text="SD format:"/>
+                                    <tabselect style=".level2.item.field" id="pref_display_sdformat" text="Enabled"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" >
+                                    <label style=".level2.item.label" text="RCA output:"/>
+                                    <tabselect style=".level2.item.field" id="pref_display_sdrcaenable" text="Enabled"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item" >
+                                    <label style=".level2.item.label" text="S-Video output:"/>
+                                    <tabselect style=".level2.item.field" id="pref_display_sdsvideoenable" text="Enabled"  focusable="true"/>
+                                </view>
+                                <view style=".level2.spacer"/>
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_display_aspect">
+                                    <label  style=".level2.item.label" text="Aspect ratio:"/>
+                                    <tabselect style=".level2.item.field" id="pref_display_aspect" focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_display_hdmi_autofr">
+                                    <label  style=".level2.item.label" text="HDMI auto frame rate:"/>
+                                    <tabselect style=".level2.item.field" id="pref_display_hdmi_autofr" focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_display_cec">
+                                    <label  style=".level2.item.label" text="HDMI-CEC:"/>
+                                    <tabselect style=".level2.item.field" id="pref_display_cec" focusable="true"/>
+                                </view>
+
+                            </view>
+                            <view style=".level2.block" id="pref_security_" navigation_table_looped="true" visible="false">
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_security_enable">
+                                    <label  style=".level2.item.label" text="Security:"/>
+                                    <tabselect style=".level2.item.field" id="pref_security_enable" text="Disabled"  focusable="true"/>
+                                </view>
+                                <view style=".level2.item,preferences.l2_item"  params="helpid=pref_security_timeout">
+                                    <label  style=".level2.item.label" text="Autolock timeout:"/>
+                                    <tabselect style=".level2.item.field" id="pref_security_timeout" text=""  focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item"  params="helpid=pref_security_tvfiltertype">
+                                    <label  style=".level2.item.label" text="Lock channels:"/>
+                                    <tabselect style=".level2.item.field" id="pref_security_tvfiltertype" text=""  focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item"  params="helpid=pref_security_operatorlock">
+                                    <label  style=".level2.item.label" text="Lock adult channels:"/>
+                                    <tabselect style=".level2.item.field" id="pref_security_operatorlock" text=""  focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item"  params="helpid=pref_security_allowapp">
+                                    <label  style=".level2.item.label" text="Allow Watching TV:"/>
+                                    <tabselect style=".level2.item.field" id="pref_security_allowtv" text="Disabled"  focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item"  params="helpid=pref_security_allowapp">
+                                    <label style=".level2.item.label" text="Allow DVR:"/>
+                                    <tabselect style=".level2.item.field" id="pref_security_allowdvr" text="Disabled"  focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item"  params="helpid=pref_security_allowapp">
+                                    <label  style=".level2.item.label" text="Allow Mediaplayer:"/>
+                                    <tabselect style=".level2.item.field" id="pref_security_allowmediaplayer" text="Disabled"  focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item"  params="helpid=pref_security_allowapp">
+                                    <label  style=".level2.item.label" text="Allow CCTV:"/>
+                                    <tabselect  style=".level2.item.field" id="pref_security_allowcctv" text="Disabled"  focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item"  params="helpid=pref_security_allowapp">
+                                    <label  style=".level2.item.label" text="Allow Applications:"/>
+                                    <tabselect  style=".level2.item.field" id="pref_security_allowapps" text="Disabled"  focusable="true"/>
+                                </view>
+                                <view  style=".level2.item,preferences.l2_item"  params="helpid=pref_security_allowwebapps">
+                                    <label  style=".level2.item.label" text="Allow Web-apps:"/>
+                                    <tabselect  style=".level2.item.field" id="pref_security_allowwebapps" text="Disabled"  focusable="true"/>
+                                </view>
+                            </view>
+
+                        </view> <!--END pref content-->
+                        <view style=".level2.helper">
+                            <contexthelp id="preferences_help" style=".level2.helper.context" />
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- END PREFERENCES -->
+
+    <!-- MEDIAPLAYER -->
+    <view id="mediaplayer">
+        <view id="player_status_mark_play" style=".play_mark" visible="false"/>
+        <view id="player_status_mark_pause" style=".pause_mark" visible="false"/>
+        <view visible="false" id="mediaplayer_loading" style=".loading">
+            <label text="Loading..." style=".loading.label"/>
+            <imageview  image="waiting_animation"  style=".loading.image"  visible="false" />
+        </view>
+    </view>
+    <view id="mediaplayer_files"  base="base_fullscreen_content" base_id="container" style =".files">
+        <view style=".files.listblock">
+            <label id="label_current_dir" style=".files.current_dir" />
+            <label id="label_current_dir_path"  style=".files.current_path"  />
+            <listview id="filelist" style=".files.listview" focusable="true">
+                <columns style=".files.listview.columns">
+                    <view style=".files.listview.fileimage" >
+                        <imageview id="fileimage" style=".files.listview.fileimage.img"/>
+                    </view>
+                    <label style=".files.listview.filename" id="filename" />
+                    <label  style=".files.listview.filesize" id="filesize" />
+                </columns>
+                <progressbar style=".files.listview.scroller">
+                    <slider style=".files.listview.slider" />
+                </progressbar>
+            </listview>
+            <view style=".files.infobar">
+                <view style=".files.infobar.1line">
+                    <label id="mediaplayer_file_format" />
+                    <label id="mediaplayer_file_duration" />
+                </view>
+                <view  style=".files.infobar.2line">
+                    <label  id="mediaplayer_file_video" />
+                </view>
+                <view  style=".files.infobar.3line">
+                    <label id="mediaplayer_file_audio" />
+                </view>
+            </view>
+        </view>
+        <view id="waiting_animation">
+            <imageview style=".files.waiting_animation" />
+        </view>
+    </view>
+    <view id="mediaplayer_playback" visible="false" style=".playback">
+        <digitalclock style=".playback.digitalclock" />
+        <date style=".playback.date" />
+        <view style =".playback.content">
+            <view style=".playback.header">
+                <label style=".playback.header.name" text="Mediaplayer"/>
+            </view>
+            <view style=".playback.now">
+                <label id="label_playback_filename" style=".playback.now.filename"/>
+                <label id="label_playback_lang" style=".playback.now.lang"/>
+            </view>
+            <view style=".playback.progress">
+                <label id="label_playback_position" style=".playback.progress.position"/>
+                <progressbar id="progress_mediaplayer"  focusable="true" style=".playback.progress.progress">
+                    <slider style=".playback.progress.slider" />
+                </progressbar>
+                <label id="label_playback_position_left" style=".playback.progress.position_left" />
+            </view>
+        </view>
+        <buttonhelper  style="base_buttonhelper" />
+    </view>
+
+
+
+    <!-- END MEDIAPLAYER -->
+
+    <!-- DVR -->
+    <view id="dvr">
+        <view id="player_status_mark_play" style=".play_mark" visible="false"/>
+        <view id="player_status_mark_pause" style=".pause_mark" visible="false"/>
+        <view visible="false" id="dvr_loading" style=".loading">
+            <label text="Loading..." style=".loading.label"/>
+            <imageview  image="waiting_animation"  style=".loading.image"  visible="false" />
+        </view>
+    </view>
+    <view id="dvr_directory"  base="base_fullscreen_content" base_id="container" style =".files">
+        <imageview id="indexer_animation"  style=".files.indexer_status.image" />
+        <view style=".files.listblock">
+            <label id="label_current_dir" style=".files.current_dir" />
+            <listview id="directory_list" style=".files.listview" focusable="true">
+                <columns style=".files.listview.columns">
+                    <view style=".files.listview.fileimage" >
+                        <imageview id="icon" style=".files.listview.fileimage.img"/>
+                    </view>
+                    <label style=".files.listview.monthday" id="monthday" />
+                    <label style=".files.listview.time" id="time" />
+                    <label style=".files.listview.name" id="name" />
+                    <label style=".files.listview.status" id="status" />
+                </columns>
+                <progressbar style=".files.listview.scroller">
+                    <slider style=".files.listview.slider" />
+                </progressbar>
+                <view id="empty_message"></view>
+            </listview>
+            <view style=".files.infobar">
+                <view style=".files.infobar.record" id="record_info">
+                    <label style=".files.infobar.channel" id="record_channel" />
+                    <label style=".files.infobar.name" id="record_name" />
+                    <label style=".files.infobar.time" id="record_time" />
+                </view>
+                <view style=".files.infobar.indexer_status">
+                    <label id="indexer_status"  style=".files.infobar.indexer_status.label"/>
+                </view>
+            </view>
+
+        </view>
+    </view>
+    <view id="dvr_playback" visible="false" style=".playback">
+        <digitalclock style=".playback.digitalclock" />
+        <date style=".playback.date" />
+        <view style =".playback.content">
+            <view style=".playback.header">
+                <label style=".playback.header.name" id="label_channel_name"/>
+            </view>
+            <view style=".playback.now">
+                <label id="label_playback_name" style=".playback.now.name"/>
+                <label id="label_playback_lang" style=".playback.now.lang"/>
+            </view>
+            <view style=".playback.progress">
+                <label id="label_playback_position" style=".playback.progress.position"/>
+                <progressbar id="progress_mediaplayer"  focusable="true" style=".playback.progress.progress">
+                    <slider style=".playback.progress.slider" />
+                </progressbar>
+                <label id="label_playback_position_left" style=".playback.progress.position_left" />
+            </view>
+        </view>
+        <buttonhelper  style="base_buttonhelper" />
+    </view>
+
+
+
+    <!-- END DVR -->
+
+    <!-- CCTV -->
+    <view id="cctv">
+        <view visible="false" id="cctv_loading" style=".loading">
+            <label text="Connecting..." style=".loading.label"/>
+            <imageview  image="waiting_animation"  style=".loading.image"  visible="false" />
+        </view>
+    </view>
+    <view id="cctv_directory"  base="base_fullscreen_content" base_id="container" style =".files">
+        <view style=".files.listblock">
+            <label id="current_dir" style=".files.current_dir" />
+            <listview id="directory_list" style=".files.listview" focusable="true">
+                <columns style=".files.listview.columns">
+                    <view style=".files.listview.fileimage" >
+                        <imageview id="icon" style=".files.listview.fileimage.img"/>
+                    </view>
+                    <label  style=".files.listview.name" id="name" />
+                </columns>
+                <progressbar style=".files.listview.scroller">
+                    <slider style=".files.listview.slider" />
+                </progressbar>
+                <view id="empty_message"></view>
+            </listview>
+        </view>
+    </view>
+    <view id="cctv_playback" visible="false" style=".playback">
+        <digitalclock style=".playback.digitalclock" />
+        <date style=".playback.date" />
+        <view style =".playback.content">
+            <view style=".playback.header">
+                <label style=".playback.header.name" text="CCTV"/>
+            </view>
+            <view style=".playback.now">
+                <label id="stream_name" style=".playback.now.name"/>
+            </view>
+        </view>
+        <buttonhelper  style="base_buttonhelper" />
+    </view>
+
+
+
+    <!-- END CCTV -->
+
+    <!-- DEMO -->
+    <view id="demo">
+    </view>
+    <!-- END DEMO -->
+
+</layouts></theme>

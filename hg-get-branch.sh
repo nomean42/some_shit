@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 LINEINT=0;
 
+
+SHORTBRANCH=$(echo $CURBRANCH|sed 's/-.*$//'|sed 's/feature\/\|hotfix\///')
 #get array with branch name without revisions
 #todo add get for relase and hotfix
-BRANCHES=( $(hg branches|sed 's/ [0-9].*$//'|grep -e 'feature\/[0-9]\+' -e 'hotfix\/[0-9]\+' -e 'release\/*[0-9]\+.[0-9]\+.[0-9]\+') )
+BRANCHES=( $(hg branches|sed 's/ [0-9].*$//'|grep -e 'feature\/[0-9]\+' -e 'hotfix\/[0-9]\+' -e 'release\/*[0-9]\+.[0-9]\+.[0-9]\+'|sed 's/-.*$//'|sed 's/feature\/\|hotfix\///') )
 echo ${BRANCHES[@]}
 for BRANCH in "${BRANCHES[@]}"
     do
