@@ -88,6 +88,13 @@ else
 fi
 
 
+SMTP_HOST="smtp.yandex.ru"
+SMTP_PORT="465"
+SMTP_USER="kvazimoda@interfaced.ru"
+SMTP_PASS="Yoh9aib9"
+SMTP_FROM="noreply@interfaced.ru"
+
+
 
 GOOD
 prepare
@@ -120,3 +127,13 @@ bash /vol/scripts/nginx_tail.sh $PROJECT_NAME $NGINX_CONF
 
 
 
+delete
+SHORT_NAMES=($(hg branch | grep -o '\/[0-9]\+\.\?[0-9]\+\.\?[0-9]\+\.\?' | sed 's/\///'))
+OLD_BUILDS=($(find $BUILD_PATH -maxdepth 1 -type d | grep -o '\/[0-9]\+\.\?[0-9]\+\.\?[0-9]\+\.\?' | sed 's/.*\///'))
+if [ ${#OLD_BUILDS[@]} != ${#SHORT_NAMES[@]} ]; then
+for FOLDER in ${OLD_BUILDS[@]}; do
+	for
+done;
+
+fi
+for i in "${MASS[@]}"; do echo '1'; done;
