@@ -60,3 +60,5 @@ if pgrep "nginx"> /dev/null ; then
 else
 	sudo nginx
 fi
+
+

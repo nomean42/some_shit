@@ -16,3 +16,7 @@ find -maxdepth 1 -type d | grep '[[:digit:]][[:digit:]]\?.[[:digit:]][[:digit:]]
 do
 cp -r $line /home/ubuntu/builds/$line
 done
+
+zb build all > 1.txt
+WARNINGS=$(cat 1.txt | grep -o -с WARNING)
+
